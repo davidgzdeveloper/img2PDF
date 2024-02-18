@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>IMG2PDF</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Deividev">
+    <meta name="description" content="Easily page to link PDFs">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/index.css">
+</head>
+<body>
+    <main>
+        <header>
+            <h1><a href="/">IMG2PDF</a></h1>
+        </header>
+        <article>
+            <p class="title">Easily web app to CONVERT IMG TO PDFs</p>
+            <form method="post" action="/upload" enctype="multipart/form-data">
+                <input type="file" name="images" id="file-upload" accept=".png, .jpg" multiple/>
+                <p><label for="file-upload">Select Files</label></p>
+                <p id="selected-files"><code></code></p>
+                <p><input type="submit" value="upload"></p>
+            </form>
+        </article>
+        <footer>
+            <p><code>copyright &copy; IMG2PDF 2024</code></p>
+        </footer>
+        <script>
+            let fileUpload = document.getElementById('file-upload');
+            let selectedFiles= document.querySelector('#selected-files code');
+            let submitButton = document.querySelector('input[type=submit]');
+            let filenames = '';
+            fileUpload.onchange = function(){
+                filenames = ''
+                for(let file of this.files){
+                    filenames += file.name
+                    filenames+= ','
+                }
+                selectedFiles.parentElement.style.display = 'block'
+                selectedFiles.textContent = filenames
+                submitButton.style.display='inline-block'
+            }
+        </script>
+    </main>
+</body>
+</html>
